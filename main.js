@@ -2,10 +2,14 @@
 
 var path = require('path');
 var program = require('commander'); // TODO: this is kinda overkill
+var fs = require('fs');
 
 var makeGithub = function (file) {
   var config = require(path.join(process.cwd(), file));
-  return require('./lib/github')(config);
+  var gh = require('./lib/github')(config);
+  gh.cache.pretty = program.pretty;
+
+  return gh;
 };
 
 var logDone = function (res) {
@@ -16,7 +20,8 @@ var logDone = function (res) {
 // ---
 
 program.
-  option('-j, --json', 'full JSON response from GitHub').
+  option('-j, --json', 'log full JSON response from GitHub').
+  option('-p, --pretty', 'pretty format cached JSON').
   version(require('./package.json').version);
 
 program.
@@ -43,6 +48,19 @@ program.
   action(function (file, id) {
     makeGithub(file).
       enableHook(id).
+      done(logDone);
+  });
+
+program.
+  command('cache <config.js>').
+  description('clear and repopulate the cache').
+  action(function (file, id) {
+    var gh = makeGithub(file);
+    
+    gh.clearCache();
+
+    gh.
+      populate().
       done(logDone);
   });
 
@@ -86,19 +104,25 @@ program.
     gh.
       populate().
       done(function () {
-        gh.on('pullRequestOpened', function (data) {
-          var number = data.payload.pull_request.number;
+        var checkPr = function (data) {
+          var number = data.pull_request.number;
           gh.getCommits(number).
             then(function (commits) {
               if (commits.some(function (commit) {
                 var match = commit.commit.message.match(/^(.*)\((.*)\)\:\s(.*)$/);
                 return !match || !match[1] || !match[3];
               })) {
-                return gh.createComment(number, fs.readFileSync('./messages/commit.md'));
+                return gh.createComment(number, fs.readFileSync('./messages/commit-message.md', 'utf8'));
               }
             }).
             done(console.log);
-        });
+        };
+
+        gh.on('pullRequestOpened', checkPr);
+
+        // TODO: remove old comments
+        gh.on('pullRequestReopened', checkPr);
+        gh.on('pullRequestSynchronize', checkPr);
 
         var server = require('./lib/hook')();
         server.on('hook', function (data) {
