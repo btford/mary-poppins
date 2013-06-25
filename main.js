@@ -104,6 +104,11 @@ program.
         server.on('hook', function (data) {
           gh.merge(data);
         });
+
+        if (program.json) {
+          server.on('hook', console.log);
+        }
+
         server.listen(gh.config.hook.port);
         console.log('listening on ' + gh.config.hook.port);
       });
