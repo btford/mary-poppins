@@ -83,26 +83,30 @@ program.
   description('run hook server').
   action(function (file) {
     var gh = makeGithub(file);
-    gh.populate();
-    gh.on('pullRequestOpened', function (data) {
-      var number = data.payload.pull_request.number;
-      gh.getCommits(number).
-        then(function (commits) {
-          if (commits.some(function (commit) {
-            var match = commit.commit.message.match(/^(.*)\((.*)\)\:\s(.*)$/);
-            return !match || !match[1] || !match[3];
-          })) {
-            return gh.createComment(number, fs.readFileSync('./messages/commit.md'));
-          }
-        }).
-        done(console.log);
-    });
+    gh.
+      populate().
+      done(function () {
+        gh.on('pullRequestOpened', function (data) {
+          var number = data.payload.pull_request.number;
+          gh.getCommits(number).
+            then(function (commits) {
+              if (commits.some(function (commit) {
+                var match = commit.commit.message.match(/^(.*)\((.*)\)\:\s(.*)$/);
+                return !match || !match[1] || !match[3];
+              })) {
+                return gh.createComment(number, fs.readFileSync('./messages/commit.md'));
+              }
+            }).
+            done(console.log);
+        });
 
-    var server = require('./lib/hook')();
-    server.on('hook', function (data) {
-      gh.merge(data);
-    });
-    server.listen(gh.config.hook.port);
+        var server = require('./lib/hook')();
+        server.on('hook', function (data) {
+          gh.merge(data);
+        });
+        server.listen(gh.config.hook.port);
+        console.log('listening on ' + gh.config.hook.port);
+      });
   });
 
 program.
