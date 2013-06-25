@@ -27,8 +27,8 @@ If you need to make changes to the config, uninstall then re-install.
 
 ## Uninstall
 
-Uninstalling turns off and removes the Github hook.
-You can disable it by running the following:
+Uninstall disables and removes the Github hook.
+You can uninstall by running the following:
 
 ```shell
 robo-friend remove
