@@ -50,6 +50,8 @@ Which will log something like this:
 
 ## Running
 
+Once Robo-Friend's GitHub hook is installed, you can have it respond to PRs like this:
+
 ```shell
 robo-friend start config.js
 ```
@@ -57,7 +59,8 @@ robo-friend start config.js
 ## Cache
 
 Robo-friend caches Github repo data to reduce the number of Github calls it needs to make.
-This cache is stored in `.cache` by default. Removing this dir...
+This cache is stored in `.cache` by default.
+Robo-Friend is pretty good at knowing when it has a dirty cache, but you can remove this directory if you'd like to.
 
 ## License
 MIT
