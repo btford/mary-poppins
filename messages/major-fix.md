@@ -1,0 +1,18 @@
+
+- [ ] Contributor [signed CLA](http://docs.angularjs.org/misc/contribute#CLA) now or in the past (if you just signed, leave a comment here with your real name)
+- [ ] PR doesn't introduce new API
+- [ ] PR is approved by 2+ senior team members
+- [ ] Breaking change check (one of):
+  - [ ] No breaking change
+  - [ ] Intentional breaking change (both):
+     - [ ] Approved by 2+ senior team members
+     - [ ] The breaking change is documented (including migration steps)
+- [ ] PR contains unit tests
+- [ ] PR contains e2e tests (if suitable)
+- [ ] PR contains documentation update (if suitable)
+- [ ] PR passes all tests on Travis (sanity)
+- [ ] PR passes all tests on ci.angularjs.org (cross-browser compatibility)
+- [ ] PR is rebased against recent master
+- [ ] PR is squashed into one commit per logical change
+- [ ] PR's commit messages are descriptive and allows us to autogenerate release notes (required [commit message format](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#))
+- [ ] All changes requested in review have been implemented

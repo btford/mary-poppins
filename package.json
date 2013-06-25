@@ -1,0 +1,15 @@
+{
+  "name": "robo-friend",
+  "version": "0.0.1",
+  "description": "Your friendly Github PR and issue helper robot",
+  "main": "main.js",
+  "author": "Brian Ford",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "~1.1.1",
+    "q": "~0.9.3",
+    "github": "~0.1.8",
+    "lodash": "~1.2.1",
+    "hookshot": "0.0.2"
+  }
+}
