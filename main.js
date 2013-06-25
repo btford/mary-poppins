@@ -102,7 +102,7 @@ program.
     server.on('hook', function (data) {
       gh.merge(data);
     });
-    server.listen(config.hook.port);
+    server.listen(gh.config.hook.port);
   });
 
 program.
