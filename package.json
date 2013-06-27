@@ -1,6 +1,6 @@
 {
   "name": "robo-friend",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Your friendly Github PR and issue helper robot",
   "main": "main.js",
   "author": "Brian Ford",
