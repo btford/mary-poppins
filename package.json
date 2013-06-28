@@ -1,16 +1,35 @@
 {
-  "name": "robo-friend",
+  "name": "mary-poppins",
   "version": "0.1.0",
-  "description": "Your friendly Github PR and issue helper robot",
+  "description": "Keeps your GitHub PRs and issues tidy",
   "main": "main.js",
-  "author": "Brian Ford",
-  "license": "MIT",
   "dependencies": {
     "commander": "~1.1.1",
-    "q": "~0.9.3",
-    "github": "~0.1.8",
+    "express": "~3.2.6",
+    "hookshot": "~0.0.2",
+    "github": "~0.1.10",
     "lodash": "~1.2.1",
-    "hookshot": "0.0.2",
-    "express": "~3.2.6"
+    "q": "~0.9.6"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "mary-poppins": "main.js"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/btford/mary-poppins.git"
+  },
+  "keywords": [
+    "cli",
+    "github"
+  ],
+  "author": "Brian Ford",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/btford/mary-poppins/issues"
   }
 }

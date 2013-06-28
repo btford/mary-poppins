@@ -1,6 +1,6 @@
-# Robo-Friend
+# Mary Poppins
 
-Your friendly Github PR and issue helper robot.
+Keeps your GitHub PRs and issues tidy.
 
 ## Config
 
@@ -9,18 +9,18 @@ See `example-config.js` for an example.
 
 ## Install
 
-Install `robo-friend` via `npm`:
+Install `mary-poppins` via `npm`:
 
 ```shell
-npm install -g robo-friend
+npm install -g mary-poppins
 ```
 
 Then you need to add the appropriate [Github repository hook](http://developer.github.com/v3/repos/hooks/).
-Robo-Friend can do this for you.
+mary-poppins can do this for you.
 Run:
 
 ```shell
-robo-friend install config.js
+mary-poppins install config.js
 ```
 
 If you need to make changes to the config, uninstall then re-install.
@@ -31,13 +31,13 @@ Uninstall disables and removes the Github hook.
 You can uninstall by running the following:
 
 ```shell
-robo-friend remove
+mary-poppins remove
 ```
 
 To verify that the hook isn't there anymore, you can run:
 
 ```shell
-robo-friend hooks
+mary-poppins hooks
 ```
 
 Which will log something like this:
@@ -50,17 +50,17 @@ Which will log something like this:
 
 ## Running
 
-Once Robo-Friend's GitHub hook is installed, you can have it respond to PRs like this:
+Once Mary Poppins's GitHub hook is installed, you can have it respond to PRs like this:
 
 ```shell
-robo-friend start config.js
+mary-poppins start config.js
 ```
 
 ## Cache
 
-Robo-friend caches Github repo data to reduce the number of Github calls it needs to make.
+Mary Poppins caches Github repo data to reduce the number of Github calls it needs to make.
 This cache is stored in `.cache` by default.
-Robo-Friend is pretty good at knowing when it has a dirty cache, but you can remove this directory if you'd like to.
+mary-poppins is pretty good at knowing when it has a dirty cache, but you can remove this directory if you'd like to.
 
 ## License
 MIT
