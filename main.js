@@ -112,7 +112,18 @@ program.
                 var match = commit.commit.message.match(/^(.*)\((.*)\)\:\s(.*)$/);
                 return !match || !match[1] || !match[3];
               })) {
-                return gh.createComment(number, fs.readFileSync('./messages/commit-message.md', 'utf8'));
+
+                var commentBody = [
+                  'greeting',
+                  'unknown',
+                  'closing'
+                ].
+                map(function (file) {
+                  return fs.readFileSync('./messages/' + file + '.md', 'utf8');
+                }).
+                join('/n');
+
+                return gh.createComment(number, commentBody);
               }
             }).
             done(console.log);

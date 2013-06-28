@@ -1,0 +1,11 @@
+- [ ] Contributor [signed CLA](http://docs.angularjs.org/misc/contribute#CLA) now or in the past
+  - If you just signed, leave a comment here with your real name
+- [ ] PR's commit messages follow the [commit message format](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#))
+- [ ] PR contains:
+  - [ ] Unit tests (if suitable)
+  - [ ] E2E tests (if suitable)
+  - [ ] Documentation update (if suitable)
+- [ ] PR passes tests:
+  - [ ] on Travis (sanity)
+  - [ ] on ci.angularjs.org (cross-browser compatibility)
+- [ ] All changes requested in review have been implemented
