@@ -114,7 +114,7 @@ program.
           gh.getCommits(number).
             then(function (commits) {
               var checkList = checks.map(function (check) {
-                if (check.condition && target === 'commits') {
+                if (check.condition && check.target === 'commits') {
                   return (check.condition(commits) ? '- [x] ' : '- [ ] ') + check.message;
                 } else {
                   return '- [ ] ' + check.message;
