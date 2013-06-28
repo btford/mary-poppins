@@ -132,8 +132,8 @@ program.
         gh.on('pullRequestOpened', checkPr);
 
         // TODO: remove old comments
-        gh.on('pullRequestReopened', checkPr);
-        gh.on('pullRequestSynchronize', checkPr);
+        //gh.on('pullRequestReopened', checkPr);
+        //gh.on('pullRequestSynchronize', checkPr);
 
         var server = require('./lib/hook')();
         server.on('hook', function (data) {
