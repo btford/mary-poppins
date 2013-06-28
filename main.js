@@ -119,9 +119,9 @@ program.
                 } else {
                   return '- [ ] ' + check.message;
                 }
-              }).join('/n');
+              }).join('\n');
 
-              var commentBody = [ greeting, checkList, closing ].join('/n/n');
+              var commentBody = [ greeting, checkList, closing ].join('\n\n');
 
               return gh.createComment(number, commentBody);
             }).
