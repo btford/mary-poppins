@@ -2,6 +2,8 @@
 
 Keeps your GitHub PRs and issues tidy.
 
+![bad photoshop](https://raw.github.com/btford/mary-poppins/master/poppins.jpg)
+
 ## Config
 
 The config file is just JavaScript.
