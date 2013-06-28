@@ -101,6 +101,11 @@ program.
   description('run hook server').
   action(function (file) {
     var gh = makeGithub(file);
+
+    var checks = require('./checks/unknown');
+    var greeting = fs.readFileSync('./messages/greeting.md', 'utf8');
+    var closing = fs.readFileSync('./messages/closing.md', 'utf8');
+
     gh.
       populate().
       done(function () {
@@ -108,23 +113,17 @@ program.
           var number = data.pull_request.number;
           gh.getCommits(number).
             then(function (commits) {
-              if (commits.some(function (commit) {
-                var match = commit.commit.message.match(/^(.*)\((.*)\)\:\s(.*)$/);
-                return !match || !match[1] || !match[3];
-              })) {
+              var checkList = checks.map(function (check) {
+                if (check.condition && target === 'commits') {
+                  return (check.condition(commits) ? '- [x] ' : '- [ ] ') + check.message;
+                } else {
+                  return '- [ ] ' + check.message;
+                }
+              }).join('/n');
 
-                var commentBody = [
-                  'greeting',
-                  'unknown',
-                  'closing'
-                ].
-                map(function (file) {
-                  return fs.readFileSync('./messages/' + file + '.md', 'utf8');
-                }).
-                join('/n');
+              var commentBody = [ greeting, checkList, closing ].join('/n/n');
 
-                return gh.createComment(number, commentBody);
-              }
+              return gh.createComment(number, commentBody);
             }).
             done(console.log);
         };
