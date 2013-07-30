@@ -4,6 +4,9 @@ var path = require('path');
 var program = require('commander'); // TODO: this is kinda overkill
 var fs = require('fs');
 
+var Q = require('q');
+Q.longStackSupport = true;
+
 var makeGithub = function (file) {
   var config = require(path.join(process.cwd(), file));
   var gh = require('./lib/github')(config);
