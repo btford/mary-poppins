@@ -2,7 +2,7 @@
   "name": "mary-poppins",
   "version": "0.1.0",
   "description": "Keeps your GitHub PRs and issues tidy",
-  "main": "main.js",
+  "main": "poppins.js",
   "dependencies": {
     "commander": "~1.1.1",
     "express": "~3.2.6",
@@ -13,9 +13,13 @@
   },
   "preferGlobal": true,
   "bin": {
-    "mary-poppins": "main.js"
+    "mary-poppins": "bin.js"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "~1.12.0",
+    "should": "~1.2.2",
+    "rewire": "~1.1.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

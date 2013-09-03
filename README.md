@@ -1,8 +1,12 @@
 # Mary Poppins
 
-Keeps your GitHub PRs and issues tidy.
 
 ![bad photoshop](https://raw.github.com/btford/mary-poppins/master/poppins.jpg)
+
+## What's Poppin'?
+
+Mary Poppins keeps your GitHub PRs and issues tidy.
+
 
 ## Config
 
