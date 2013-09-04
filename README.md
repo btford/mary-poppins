@@ -37,7 +37,7 @@ npm search poppins-
 
 Some popular plugins are:
 
-* [poppins-pr](https://github.com/btford/poppins-pr) - respond to pull requests
+* [poppins-pr-checklist](https://github.com/btford/poppins-pr-checklist) - respond to pull requests with a checklist
 
 
 #### Installing Plugins
@@ -46,7 +46,7 @@ Plugins should be installed locally, in the same directory as the config file.
 Plugins are installed with npm:
 
 ```
-npm install poppins-pr
+npm install poppins-pr-checklist
 ```
 
 #### Configuring the Plugin
@@ -133,7 +133,7 @@ Plugins are simply functions that add properties or listeners to a `Poppins` obj
 
 
 
-Take a look at [poppins-pr](https://github.com/btford/poppins-pr) for an example.
+Take a look at [poppins-pr-checklist](https://github.com/btford/poppins-pr-checklist) for an example.
 
 -------------------------------------------------------------------------------
 
