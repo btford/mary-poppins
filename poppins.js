@@ -7,20 +7,23 @@ var maybeRequire;
 
 
 var Poppins = function Poppins () {
+  this.plugins = {};
   Metahub.apply(this, arguments);
 };
 
 util.inherits(Poppins, Metahub);
 
 // register a task for Poppins
-Poppins.prototype.couldYouPlease = function couldYouPlease (task) {
-  if (task instanceof Array) {
-    return task.forEach(this.couldYouPlease.bind(this));
-  } else if (typeof task === 'string') {
-    task = maybeRequire(task) || maybeRequire('poppins-' + task);
+Poppins.prototype.couldYouPlease = function couldYouPlease (taskName) {
+  var task;
+
+  if (taskName instanceof Array) {
+    return taskName.forEach(this.couldYouPlease.bind(this));
+  } else if (typeof taskName === 'string') {
+    task = maybeRequire(taskName) || maybeRequire('poppins-' + taskName);
   }
   if (!task) {
-    throw new Error('Task not found');
+    return this.emit('warning', 'Could not find task "' + taskName + '"');
   }
 
   task(this);

@@ -13,7 +13,7 @@
   },
   "preferGlobal": true,
   "bin": {
-    "mary-poppins": "bin.js"
+    "poppins": "bin.js"
   },
   "devDependencies": {
     "mocha": "~1.12.0",
