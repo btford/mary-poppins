@@ -125,7 +125,7 @@ Which will log something like this:
 
 Alternatively, you can remove the hook by visiting "https://github.com/**you**/**your-repo**/settings/hooks" and clicking "remove."
 
-![bad photoshop](https://raw.github.com/btford/poppins/master/img/github-hooks.png)
+![bad photoshop](https://raw.github.com/btford/mary-poppins/master/img/github-hooks.png)
 
 -------------------------------------------------------------------------------
 
