@@ -7,6 +7,10 @@
 
 Mary Poppins is an extensible GitHub bot that keeps your PRs and issues tidy.
 
+See also:
+* [haunt](https://github.com/fat/haunt) - A module for creating github issue bots
+* [metahub](https://github.com/btford/metahub) - github metadata cache/mirror
+
 
 ## Install
 
@@ -20,11 +24,12 @@ npm install -g mary-poppins
 ## Config
 
 The config file is just JavaScript.
-See `example-config.js` for an example.
+See [`example-config.js`](https://github.com/btford/mary-poppins/blob/master/example-config.js).
 
 ### Plugins
 
 By herself, Mary Poppins don't do anything interesting.
+By loading plugins, you can give her things to do.
 
 
 #### Finding Plugins
@@ -49,10 +54,23 @@ Plugins are installed with npm:
 npm install poppins-pr-checklist
 ```
 
+After installing the plugin, you need to load it by calling `poppins.couldYouPlease()` in your config file:
+
+```javascript
+// config.js
+module.exports = function (poppins) {
+
+  poppins.config = { /*...*/ };
+
+  poppins.couldYouPlease('pr-checklist');
+};
+```
+
+
 #### Configuring the Plugin
 
-Plugins are configured by adding properties to `poppins`.
-By convention, plugins.
+Plugins are configured by adding properties to a `Poppins` object.
+By convention, plugins add properties to `poppins.plugins.pluginName`, where `pluginName` corresponds to the name of the plugin.
 
 
 ## Let's get Poppin'
@@ -107,7 +125,7 @@ Which will log something like this:
 
 Alternatively, you can remove the hook by visiting "https://github.com/**you**/**your-repo**/settings/hooks" and clicking "remove."
 
-![bad photoshop](https://raw.github.com/btford/poppins/master/img/github-hooks.jpg)
+![bad photoshop](https://raw.github.com/btford/poppins/master/img/github-hooks.png)
 
 -------------------------------------------------------------------------------
 
@@ -122,16 +140,74 @@ This cache is stored in `.cache` by default.
 
 ## Programatic API
 
+The programmatic API is useful for authoring plugins.
 If you don't need to interact with Mary Poppins's plugins, you might be better off using [`metahub`](https://github.com/btford/metahub).
 
+
+### Constructor
+
+Useful for extending Poppins.
+Note that Poppins extends [metahub](https://github.com/btford/metahub) and is an [EventEmitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).
+
+```javascript
+var util = require('util');
+var Poppins = require('poppins').Poppins;
+
+var MrsFeatherbottom = function () {};
+util.inherits(MrsFeatherbottom, Poppins);
+
+var nanny = new MrsFeatherbottom({});
+```
+
+### factory
+
+```javascript
+var config = { /* ... */ };
+var poppins = require('poppins')(config);
+```
+
+### `poppins.server`
+
+An [express](http://expressjs.com/) instance that listens for updates from Github's web hook.
+
+### `poppins.config`
+
+Core config options:
+
+```javascript
+config = {
+  target: {
+    user: 'myname',
+    repo: 'myrepo'
+  },
+  login: {
+    username: 'myrobotname',
+    password: 'supersecretpassword'
+  },
+  hook: {
+    url: 'http://example.com:1234',
+    port: 1234
+  }
+};
+```
+
+See [`example-config.js`](https://github.com/btford/mary-poppins/blob/master/example-config.js).
+
+## Events
+
+`Poppins` is an [EventEmitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).
+
+### `pullRequestOpened`
+
+```javascript
+poppins.on('pullRequestOpened', function (data) { /*...*/ }
+```
 
 -------------------------------------------------------------------------------
 
 ## Authoring Plugins
 
 Plugins are simply functions that add properties or listeners to a `Poppins` object.
-
-
 
 Take a look at [poppins-pr-checklist](https://github.com/btford/poppins-pr-checklist) for an example.
 

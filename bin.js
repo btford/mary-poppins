@@ -4,9 +4,7 @@ var path = require('path');
 var program = require('commander'); // TODO: this is kinda overkill
 var fs = require('fs');
 
-var makeMetahub = require('metahub');
-
-var initMetahub = function (file) {
+var initPoppins = function (file) {
   var config = require(path.join(process.cwd(), file));
   return makeMetahub(config);
 };
