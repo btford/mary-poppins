@@ -31,6 +31,16 @@ program.
   });
 
 program.
+  command('init [file]').
+  description('create a new poppins config file').
+  action(function (file) {
+    file = file || 'poppins.config.js';
+    fs.writeFileSync(
+        path.join(process.cwd(), file),
+        fs.readFileSync(path.join(__dirname, 'example-config.js')));
+  });
+
+program.
   command('remove <config.js> [id]').
   description('remove hook from GitHub').
   action(function (file, id) {

@@ -26,17 +26,22 @@ npm install -g mary-poppins
 The config file is just JavaScript.
 See [`example-config.js`](https://github.com/btford/mary-poppins/blob/master/example-config.js).
 
+To create a new config in the current directory from the example, you can run:
+```
+mary-poppins init
+```
+
 ### Plugins
 
 By herself, Mary Poppins don't do anything interesting.
-By loading plugins, you can give her things to do.
+By loading plugins you can give her things to do.
 
 
 #### Finding Plugins
 
-Search plugins:
+Search for plugins via `npm`:
 
-```
+```shell
 npm search poppins-
 ```
 
