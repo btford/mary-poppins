@@ -19,14 +19,16 @@ Poppins.prototype.couldYouPlease = function couldYouPlease (taskName) {
 
   if (taskName instanceof Array) {
     return taskName.forEach(this.couldYouPlease.bind(this));
-  } else if (typeof taskName === 'string') {
+  }
+  if (typeof taskName === 'string') {
     task = maybeRequire(taskName) || maybeRequire('poppins-' + taskName);
   }
-  if (!task) {
-    return this.emit('warning', 'Could not find task "' + taskName + '"');
+  if (task) {
+    task(this);
+    this.emit('log`', 'Loaded task "' + taskName + '"');
+  } else {
+    return this.emit('log`', 'Could not find task "' + taskName + '"');
   }
-
-  task(this);
 };
 
 // load locally installed tasks for Poppins
