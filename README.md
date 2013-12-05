@@ -45,19 +45,23 @@ Search for plugins via `npm`:
 npm search poppins-
 ```
 
-Some popular plugins are:
+Some existing plugins are:
 
 * [poppins-pr-checklist](https://github.com/btford/poppins-pr-checklist) - respond to pull requests with a checklist
+  - [poppins-check-cla](https://github.com/btford/poppins-check-cla) - check if a user has signed a CLA
+  - [poppins-check-commit](https://github.com/btford/poppins-check-commit) - check if the commits follow conventions
 
 
 #### Installing Plugins
 
 Plugins should be installed locally, in the same directory as the config file.
-Plugins are installed with npm:
+Plugins are installed with `npm`:
 
 ```
-npm install poppins-pr-checklist
+npm install poppins-pr-checklist --save
 ```
+
+Typically you want to save the plugin to `package.json`.
 
 After installing the plugin, you need to load it by calling `poppins.couldYouPlease()` in your config file:
 
@@ -71,6 +75,7 @@ module.exports = function (poppins) {
 };
 ```
 
+Alternatively, poppins can load all of the plugins in the `node_modules` directory with `poppins.theUsualPlase()`.
 
 #### Configuring the Plugin
 
