@@ -21,4 +21,7 @@ module.exports = function (poppins) {
       port: 1234
     }
   };
+
+  // load plugins from the cwd
+  poppins.theUsualPlease();
 };
