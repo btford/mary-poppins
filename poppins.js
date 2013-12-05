@@ -8,6 +8,7 @@ var maybeRequire;
 
 var Poppins = function Poppins () {
   this.plugins = {};
+  Metahub.apply(this, arguments);
 };
 
 util.inherits(Poppins, Metahub);
@@ -36,7 +37,6 @@ Poppins.prototype.theUsualPlease = function theUsualPlease () {
 
 
 Poppins.prototype.start = function () {
-  Metahub.apply(this, arguments);
   return Metahub.prototype.start.apply(this, arguments);
 };
 
