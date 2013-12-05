@@ -1,17 +1,10 @@
 #!/usr/bin/env node
 
-var path = require('path');
-var program = require('commander'); // TODO: this is kinda overkill
-var fs = require('fs');
+var fs           = require('fs');
+var path         = require('path');
+var program      = require('commander');
+var makePoppins  = require('./poppins');
 
-var initPoppins = function (file) {
-  var config = require(path.join(process.cwd(), file));
-  return makeMetahub(config);
-};
-
-var logDone = function (res) {
-  console.log(program.json ? res : 'Done.');
-};
 
 // CLI
 // ---
@@ -19,16 +12,15 @@ var logDone = function (res) {
 program.
   option('-j, --json', 'log full JSON response from GitHub').
   option('-p, --pretty', 'pretty format cached JSON').
+  option('-v, --verbose', 'Print log messages').
   version(require('./package.json').version);
 
 program.
   command('install <config.js>').
   description('install hook on GitHub').
-  action(function (file) {
-    initMetahub(file).
-      createHook().
-      done(logDone);
-  });
+  action(withPoppins(function (poppins) {
+    return poppins.createHook();
+  }));
 
 program.
   command('init [file]').
@@ -43,49 +35,37 @@ program.
 program.
   command('remove <config.js> [id]').
   description('remove hook from GitHub').
-  action(function (file, id) {
-    initMetahub(file).
-      deleteHook(id).
-      done(logDone);
-  });
+  action(withPoppins(function (poppins, id) {
+    return poppins.deleteHook(id);
+  }));
 
 program.
   command('enable <config.js> [id]').
   description('enable GitHub hook').
-  action(function (file, id) {
-    initMetahub(file).
-      enableHook(id).
-      done(logDone);
-  });
+  action(withPoppins(function (poppins, id) {
+    return poppins.enableHook(id);
+  }));
 
 program.
   command('cache <config.js>').
   description('clear and repopulate the cache').
-  action(function (file, id) {
-    var meta = initMetahub(file);
-
-    meta.clearCache();
-
-    meta.
-      populate().
-      done(logDone);
-  });
+  action(withPoppins(function (poppins) {
+    poppins.clearCache();
+    return poppins.populate();
+  }));
 
 program.
   command('disable <config.js> [id]').
-  description('enable GitHub hook').
-  action(function (file, id) {
-    initMetahub(file).
-      disableHook(id).
-      done(logDone);
-  });
+  description('disable GitHub hook').
+  action(withPoppins(function (poppins, id) {
+    return poppins.disableHook(id);
+  }));
 
 program.
   command('hooks <config.js>').
   description('list GitHub hooks').
-  action(function (file) {
-    var meta = initMetahub(file);
-    meta.getHooks().
+  action(withPoppins(function (poppins) {
+    poppins.getHooks().
       done(function (hooks) {
         if (program.json) {
           console.log(hooks);
@@ -101,16 +81,41 @@ program.
             console.log('  url:    ' + hook.config.url);
           });
       });
-  });
+  }));
 
 program.
   command('start <config.js>').
   description('run hook server').
-  action(function (file) {
-    var meta = initMetahub(file);
-
-    meta.start();
-  });
+  action(withPoppins(function (poppins) {
+    return poppins.start();
+  }));
 
 program.
   parse(process.argv);
+
+// --
+
+function withPoppins (fn) {
+  return function (file) {
+    var poppins = arguments[0] = initPoppins(file);
+    if (program.verbose) {
+      poppins.on('log', console.log.bind(console));
+    }
+    var promise = fn.apply(null, arguments);
+    if (promise && promise.then) {
+      promise.done(logDone);
+    }
+    return promise;
+  };
+}
+
+function initPoppins (file) {
+  var config = require(path.join(process.cwd(), file));
+  var poppins = makePoppins();
+  config(poppins);
+  return poppins;
+}
+
+function logDone (res) {
+  console.log(program.json ? res : 'Done.');
+}
