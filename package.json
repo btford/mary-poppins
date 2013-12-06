@@ -9,7 +9,9 @@
     "hookshot": "~0.0.2",
     "github": "~0.1.10",
     "lodash": "~1.2.1",
-    "q": "~0.9.6"
+    "q": "~0.9.6",
+    "metahub": "*",
+    "qequire": "*"
   },
   "preferGlobal": true,
   "bin": {
