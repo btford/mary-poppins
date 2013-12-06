@@ -34,6 +34,9 @@ Poppins.prototype.couldYouPlease = function couldYouPlease (taskName) {
 // load locally installed tasks for Poppins
 Poppins.prototype.theUsualPlease = function theUsualPlease () {
   fs.readdirSync(process.cwd() + '/node_modules').
+    filter(function (name) {
+      return name.indexOf('poppins-') === 0;
+    }).
     forEach(this.couldYouPlease.bind(this));
 };
 
