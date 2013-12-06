@@ -25,9 +25,9 @@ Poppins.prototype.couldYouPlease = function couldYouPlease (taskName) {
   }
   if (task) {
     task(this);
-    this.emit('log`', 'Loaded task "' + taskName + '"');
+    this.emit('log', 'Loaded task "' + taskName + '"');
   } else {
-    return this.emit('log`', 'Could not find task "' + taskName + '"');
+    return this.emit('log', 'Could not find task "' + taskName + '"');
   }
 };
 
