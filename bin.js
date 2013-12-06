@@ -113,6 +113,7 @@ function initPoppins (file) {
   var config = require(path.join(process.cwd(), file));
   var poppins = makePoppins();
   config(poppins);
+  poppins._config();
   return poppins;
 }
 
