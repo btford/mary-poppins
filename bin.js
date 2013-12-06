@@ -100,6 +100,7 @@ function withPoppins (fn) {
     var poppins = arguments[0] = initPoppins(file);
     if (program.verbose) {
       poppins.on('log', console.log.bind(console));
+      poppins.server.on('hook', console.log.bind(console));
     }
     var promise = fn.apply(null, arguments);
     if (promise && promise.then) {
