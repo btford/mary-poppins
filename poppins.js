@@ -3,8 +3,6 @@ var util = require('util');
 
 var Metahub = require('metahub').Metahub;
 
-var maybeRequire;
-
 
 var Poppins = function Poppins () {
   this.plugins = {};
@@ -46,13 +44,11 @@ Poppins.prototype.start = function () {
 };
 
 
-maybeRequire = maybeTry(require);
-
-function maybeTry (fn) {
-  return function () {
-    try {
-      fn.apply(null, arguments);
-    } catch (e) {}
+function maybeRequire (package) {
+  try {
+    return require(process.cwd() + '/node_modules/' + package);
+  } catch (e) {
+    console.log(e.toString());
   }
 }
 
