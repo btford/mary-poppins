@@ -22,6 +22,6 @@ module.exports = function (poppins) {
     }
   };
 
-  // load plugins from the cwd
+  // load plugins from the cwdrhtrth
   poppins.theUsualPlease();
 };
