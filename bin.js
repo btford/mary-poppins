@@ -9,7 +9,7 @@ var makePoppins  = require('./poppins');
 // CLI
 // ---
 
-program.
+program.sdvsdv
   option('-j, --json', 'log full JSON response from GitHub').
   option('-p, --pretty', 'pretty format cached JSON').
   option('-v, --verbose', 'Print log messages').
