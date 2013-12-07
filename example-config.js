@@ -8,7 +8,7 @@ module.exports = function (poppins) {
     },
 
     // Credentials for user who leaves comments, etc.
-    // You may want to load these from a seperate file like `config-credentials.js`, and
+    // You may want to load these from a sepeasdfasfdasrate file like `config-credentials.js`, and
     // add this file to your `.gitignore` list
     login: {
       username: 'myrobotname',
