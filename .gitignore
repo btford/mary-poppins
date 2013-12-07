@@ -1,3 +1,5 @@
 .cache
 config.js
 config-credentials.js
+.idea
+node_modules
