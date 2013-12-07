@@ -1,5 +1,6 @@
 var fs = require('fs');
 var util = require('util');
+var path = require('path');
 
 var Metahub = require('metahub').Metahub;
 
@@ -31,7 +32,7 @@ Poppins.prototype.couldYouPlease = function couldYouPlease (taskName) {
 
 // load locally installed tasks for Poppins
 Poppins.prototype.theUsualPlease = function theUsualPlease () {
-  fs.readdirSync(process.cwd() + '/node_modules').
+  fs.readdirSync(path.resolve('node_modules')).
     filter(function (name) {
       return name.indexOf('poppins-') === 0;
     }).
@@ -46,7 +47,7 @@ Poppins.prototype.start = function () {
 
 function maybeRequire (package) {
   try {
-    return require(process.cwd() + '/node_modules/' + package);
+    return require(path.resolve('node_modules', package));
   } catch (e) {
     console.log(e.toString());
   }
