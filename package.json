@@ -13,7 +13,7 @@
     "metahub": "*",
     "qequire": "*"
   },
-  "preferGlobal": true,
+  "preferGlobal": true,qwdqwd
   "bin": {
     "mary-poppins": "bin.js"
   },
