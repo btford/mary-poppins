@@ -1,6 +1,6 @@
 {
   "name": "mary-poppins",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Keeps your GitHub PRs and issues tidy",
   "main": "poppins.js",
   "dependencies": {
