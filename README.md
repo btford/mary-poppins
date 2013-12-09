@@ -100,6 +100,9 @@ mary-poppins install config.js
 
 If you need to make changes to the config, uninstall then re-install.
 
+**Note:** You need to use this command to install the hook. Using the web-based panel for hooks
+will not set the correct options.
+
 Once Mary Poppins's GitHub hook is installed, you can have her respond to PRs like this:
 
 ```shell
