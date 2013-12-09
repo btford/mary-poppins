@@ -226,5 +226,12 @@ Take a look at [poppins-pr-checklist](https://github.com/btford/poppins-pr-check
 
 -------------------------------------------------------------------------------
 
+## Developing Mary Poppins
+
+Resources:
+
+* https://help.github.com/articles/post-receive-hooks
+* http://requestb.in/
+
 ## License
 MIT
