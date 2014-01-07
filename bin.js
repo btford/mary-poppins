@@ -92,6 +92,7 @@ program.
       poppins._config();
       poppins.issues = poppins.cache.get('issues');
       poppins.serverInstance = poppins.server.listen(poppins.config.hook.port);
+      poppins.emit('cacheBuilt');
       return poppins;
     } else {
       return poppins.start();
