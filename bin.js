@@ -13,6 +13,7 @@ program.
   option('-j, --json', 'log full JSON response from GitHub').
   option('-p, --pretty', 'pretty format cached JSON').
   option('-v, --verbose', 'Print log messages').
+  option('-s, --skip', 'Skip initial scrape').
   version(require('./package.json').version);
 
 program.
@@ -87,7 +88,13 @@ program.
   command('start <config.js>').
   description('run hook server').
   action(withPoppins(function (poppins) {
-    return poppins.start();
+    if (program.skip) {
+      poppins._config();
+      poppins.serverInstance = poppins.server.listen(poppins.config.hook.port);
+      return poppins;
+    } else {
+      return poppins.start();
+    }
   }));
 
 program.
