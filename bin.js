@@ -90,6 +90,7 @@ program.
   action(withPoppins(function (poppins) {
     if (program.skip) {
       poppins._config();
+      poppins.issues = poppins.cache.get('issues');
       poppins.serverInstance = poppins.server.listen(poppins.config.hook.port);
       return poppins;
     } else {
