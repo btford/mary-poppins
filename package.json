@@ -10,7 +10,7 @@
     "github": "~0.1.10",
     "lodash": "~1.2.1",
     "q": "~0.9.6",
-    "metahub": "~0.2.0",
+    "metahub": "~0.3.0",
     "qequire": "*"
   },
   "preferGlobal": true,
