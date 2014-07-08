@@ -7,10 +7,6 @@
 
 Mary Poppins is an extensible GitHub bot that keeps your PRs and issues tidy.
 
-See also:
-* [haunt](https://github.com/fat/haunt) - A module for creating github issue bots
-* [metahub](https://github.com/btford/metahub) - github metadata cache/mirror
-
 
 ## Install
 
@@ -232,6 +228,12 @@ Resources:
 
 * https://help.github.com/articles/post-receive-hooks
 * http://requestb.in/
+
+## See Also
+
+* [haunt](https://github.com/fat/haunt) - A module for creating github issue bots
+* [metahub](https://github.com/btford/metahub) - github metadata cache/mirror
+* [lmvtfy](http://blog.getbootstrap.com/2014/06/25/lmvtfy/) – a bot for doing static analysis
 
 ## License
 MIT
