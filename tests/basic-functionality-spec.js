@@ -14,7 +14,7 @@ describe('basic', function () {
       expect(mocks.poppins.repo).to.eql({
           id: 123,
           name: 'someName',
-          meta: {status: '200 OK'}
+          meta: {}
       });
     }).then(done, done);
   });
