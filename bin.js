@@ -5,15 +5,16 @@ var path         = require('path');
 var program      = require('commander');
 var makePoppins  = require('./poppins');
 
+var log = console.log.bind(console);
 
 // CLI
 // ---
 
 program.
-  option('-j, --json', 'log full JSON response from GitHub').
-  option('-p, --pretty', 'pretty format cached JSON').
-  option('-v, --verbose', 'Print log messages').
-  option('-s, --skip', 'Skip initial scrape').
+  option('-l, --log'     , 'print log messages').
+  option('-p, --pretty'  , 'pretty format JSON cache').
+  option('-s, --skip'    , 'skip initial scrape').
+  option('-v, --verbose' , 'log full JSON responses from GitHub').
   version(require('./package.json').version);
 
 program.
@@ -68,8 +69,8 @@ program.
   action(withPoppins(function (poppins) {
     poppins.getHooks().
       done(function (hooks) {
-        if (program.json) {
-          console.log(hooks);
+        if (program.verbose) {
+          log(hooks);
           return;
         }
         hooks.
@@ -77,9 +78,9 @@ program.
             return hook.name === 'web';
           }).
           forEach(function (hook) {
-            console.log('#' + hook.id);
-            console.log('  active: ' + hook.active);
-            console.log('  url:    ' + hook.config.url);
+            log('#' + hook.id);
+            log('  active: ' + hook.active);
+            log('  url:    ' + hook.config.url);
           });
       });
   }));
@@ -108,8 +109,10 @@ function withPoppins (fn) {
   return function (file) {
     var poppins = arguments[0] = initPoppins(file);
     if (program.verbose) {
-      poppins.on('log', console.log.bind(console));
-      poppins.server.on('hook', console.log.bind(console));
+      poppins.server.on('hook', log);
+    }
+    if (program.log) {
+      poppins.on('log', log);
     }
     var promise = fn.apply(null, arguments);
     if (promise && promise.then) {
@@ -128,5 +131,5 @@ function initPoppins (file) {
 }
 
 function logDone (res) {
-  console.log(program.json ? res : 'Done.');
+  log(program.verbose ? res : 'Done.');
 }
