@@ -1,5 +1,6 @@
 # Mary Poppins
 
+[![Build Status](https://travis-ci.org/btford/mary-poppins.svg)](https://travis-ci.org/btford/mary-poppins)
 
 ![bad photoshop](https://raw.github.com/btford/mary-poppins/master/img/poppins.jpg)
 
