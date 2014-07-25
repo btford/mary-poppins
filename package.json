@@ -9,7 +9,7 @@
     "github": "~0.1.10",
     "hookshot": "~0.0.2",
     "lodash": "~1.2.1",
-    "metahub": "^0.5.0",
+    "metahub": "^0.6.1",
     "q": "~0.9.6",
     "qequire": "*"
   },
