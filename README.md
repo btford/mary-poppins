@@ -45,8 +45,8 @@ npm search poppins-
 Some existing plugins are:
 
 * [poppins-pr-checklist](https://github.com/btford/poppins-pr-checklist) - respond to pull requests with a checklist
-  - [poppins-check-cla](https://github.com/btford/poppins-check-cla) - check if a user has signed a CLA
-  - [poppins-check-commit](https://github.com/btford/poppins-check-commit) - check if the commits follow conventions
+* [poppins-check-cla](https://github.com/btford/poppins-check-cla) - check if a user has signed a CLA
+* [poppins-check-commit](https://github.com/btford/poppins-check-commit) - check if the commits follow conventions
 
 
 #### Installing Plugins
