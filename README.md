@@ -72,7 +72,7 @@ module.exports = function (poppins) {
 };
 ```
 
-Alternatively, poppins can load all of the plugins in the `node_modules` directory with `poppins.theUsualPlase()`.
+Alternatively, poppins can load all of the plugins in the `node_modules` directory with `poppins.theUsualPlease()`.
 
 #### Configuring the Plugin
 
