@@ -12,7 +12,7 @@ module.exports = function (poppins) {
     // add this file to your `.gitignore` list
     login: {
       username: 'myrobotname',
-      password: 'supersecretpassword'
+      password: 'supersecretpassword'wefwef
     },
 
     // port for poppins to listen on and URL for Github to ping
