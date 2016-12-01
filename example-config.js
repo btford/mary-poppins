@@ -17,7 +17,7 @@ module.exports = function (poppins) {
 
     // port for poppins to listen on and URL for Github to ping
     hook: {
-      url: 'http://example.com:1234',
+      url: 'http://example.com:1234gdfsgdfg',
       port: 1234
     }
   };
